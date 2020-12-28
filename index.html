@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="인공지능 Teachable Machine 2.0으로 당신의 잠재력을 확인하세요">
-	<meta property="og:type" content="website"> 
+	<meta property="og:type" content="website">
 	<meta property="og:title" content="My Potential">
 	<meta property="og:description" content="세계의 리더, 스포츠계의 선망, 
 	연예인 기질, 존경받는 위인, 모든이의 로망 등 
@@ -122,15 +122,33 @@
 		</div>
 	</div>
 
-	<h4 class="text-center">사진은 절대 어디에도 저장되지 않습니다.</h4>
+	<h4 class="text-center"> ** 테스트한사진은 절대 어디에도 저장되지 않습니다. **</h4>
+
+	<!-- AD area -->
+	<div class="ad-banner">
+		<ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-76odb7WjK7QN4Zyh" data-ad-width="320"
+			data-ad-height="100"></ins>
+		<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+	</div>
+	<div class="ad-banner1">
+		<ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-QdaE8h38DqSQORwr" data-ad-width="300"
+			data-ad-height="250"></ins>
+		<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+	</div>
+	<div class="ad-banner2">
+		<ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-HYjuVrQMGmFWd9Uo" data-ad-width="320"
+			data-ad-height="50"></ins>
+		<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+	</div>
 
 	<section class="youtube pb-3">
 		<div class="container mt-3 youtube-cover d-flex flex-row-reverse align-items-center">
 			<img src="img/youtube-copy.jpg" alt="youtube-icon" class="youtube-icon">
-			<a href="https://www.youtube.com/channel/UCQNE2JmbasNYbjGAcuBiRRg" class="youtube-link">제작 도움: 조코딩 유튜브 채널</a>
+			<a href="https://www.youtube.com/channel/UCQNE2JmbasNYbjGAcuBiRRg" class="youtube-link">제작 도움: 조코딩 유튜브
+				채널</a>
 		</div>
 	</section>
-	
+
 	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
@@ -177,7 +195,7 @@
 	</script>
 
 	<script type="text/javascript">
-		
+
 		let URL;
 		const urlMale = 'https://teachablemachine.withgoogle.com/models/qDjJBuxrj/';
 		const urlFemale = 'https://teachablemachine.withgoogle.com/models/_2xvOzcth/';
@@ -208,14 +226,14 @@
 		}
 
 		async function predict() {
-			
+
 			var image = document.getElementById('current');
 			const prediction = await model.predict(image, false);
 			prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
 			console.log(prediction[0].className);
 
 			var resultTitle, resultExplain;
-			
+
 
 			if (document.getElementById("sex").checked) {
 
@@ -248,7 +266,7 @@
 					default:
 						resultTitle = '도저히 당신의 내면을 알수가 없네요'
 						resultExplain = ""
-					
+
 				}
 			} else {
 				switch (prediction[0].className) {
@@ -285,77 +303,77 @@
 			}
 
 
-				var title =
-					"<div class='" +
-					prediction[0].className +
-					"-people-title'>" +
-					resultTitle +
-					'</div>';
-				var explain = "<div class='people-explain pt-2'>" + resultExplain + "</div>"
-				
-				$('.result-message').html(title + explain);
+			var title =
+				"<div class='" +
+				prediction[0].className +
+				"-people-title'>" +
+				resultTitle +
+				'</div>';
+			var explain = "<div class='people-explain pt-2'>" + resultExplain + "</div>"
 
-				var barWidth;
+			$('.result-message').html(title + explain);
 
-				for (let i = 0; i < maxPredictions; i++) {
-					if (prediction[i].probability.toFixed(2) > 0.1) {
-						barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + '%';
-					} else if (prediction[i].probability.toFixed(2) >= 0.01) {
-						barWidth = '4%';
-					} else {
-						barWidth = '2%';
-					}
-					var labelTitle;
-					switch (prediction[i].className) {
-						case 'movie':
-							labelTitle = 'No.1스타';
-							break;
-						case 'enterprise':
-							labelTitle = '일류기업';
-							break;
-						case 'sport':
-							labelTitle = '최고선수';
-							break;
-						case 'science':
-							labelTitle = '핵심과학';
-							break;
-						case 'great':
-							labelTitle = '존경위인';
-							break;
+			var barWidth;
 
-						case 'model':
-							labelTitle = '모두의 천사';
-							break;
-						case 'wannabe':
-							labelTitle = '당신의 워너비';						
-							break;
-						case 'celeb':
-							labelTitle = '여성의 로망';
-							break;
-						case 'leader':
-							labelTitle = '우리의 지도자';
-							break;
-
-						default:
-							labelTitle = '알수없음';
-					}
-					var label =
-						"<div class='people-label d-flex align-items-center'>" +
-						labelTitle +
-						'</div>';
-					var bar =
-						"<div class='bar-container position-relative container'><div class='" +
-						prediction[i].className +
-						"-box'></div><div class='d-flex justify-content-center align-items-center " +
-						prediction[i].className +
-						"-bar' style='width: " +
-						barWidth +
-						"'><span class='d-block percent-text'>" +
-						Math.round(prediction[i].probability.toFixed(3) * 100) +
-						'%</span></div></div>';
-					labelContainer.childNodes[i].innerHTML = label + bar;
+			for (let i = 0; i < maxPredictions; i++) {
+				if (prediction[i].probability.toFixed(2) > 0.1) {
+					barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + '%';
+				} else if (prediction[i].probability.toFixed(2) >= 0.01) {
+					barWidth = '4%';
+				} else {
+					barWidth = '2%';
 				}
-			}	
+				var labelTitle;
+				switch (prediction[i].className) {
+					case 'movie':
+						labelTitle = 'No.1스타';
+						break;
+					case 'enterprise':
+						labelTitle = '일류기업';
+						break;
+					case 'sport':
+						labelTitle = '최고선수';
+						break;
+					case 'science':
+						labelTitle = '핵심과학';
+						break;
+					case 'great':
+						labelTitle = '존경위인';
+						break;
+
+					case 'model':
+						labelTitle = '모두의 천사';
+						break;
+					case 'wannabe':
+						labelTitle = '당신의 워너비';
+						break;
+					case 'celeb':
+						labelTitle = '여성의 로망';
+						break;
+					case 'leader':
+						labelTitle = '우리의 지도자';
+						break;
+
+					default:
+						labelTitle = '알수없음';
+				}
+				var label =
+					"<div class='people-label d-flex align-items-center'>" +
+					labelTitle +
+					'</div>';
+				var bar =
+					"<div class='bar-container position-relative container'><div class='" +
+					prediction[i].className +
+					"-box'></div><div class='d-flex justify-content-center align-items-center " +
+					prediction[i].className +
+					"-bar' style='width: " +
+					barWidth +
+					"'><span class='d-block percent-text'>" +
+					Math.round(prediction[i].probability.toFixed(3) * 100) +
+					'%</span></div></div>';
+				labelContainer.childNodes[i].innerHTML = label + bar;
+			}
+		}	
 	</script>
 
 </body>

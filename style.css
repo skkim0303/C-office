@@ -504,3 +504,18 @@ input:checked + label:after {left:calc(100% - 52.5px);}
 label span {
   display: none;
 }
+
+.ad-banner {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.ad-banner1 {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.ad-banner2 {
+  width: 320px;
+  margin: 0 auto;
+}
